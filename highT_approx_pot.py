@@ -3,7 +3,6 @@ import scipy
 import matplotlib.pyplot as plt
 from cosmoTransitions import generic_potential
 
-
 class sm_singlet(generic_potential.generic_potential):
 
     def setSM(self, mW, mZ, mh, v, mt):
