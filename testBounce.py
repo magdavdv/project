@@ -58,7 +58,7 @@ def equations(r, y):
 r = np.linspace(0.0001, 0.1, 100)
 xspan = (r[0], r[-1])
 
-f0 = [phi0+3000, 0]          #phi0 - first guess, dphi/dr = 0
+f0 = [phi0, 0]          #phi0 - first guess, dphi/dr = 0
 
 # plt.plot(phi_span, dVdphi(phi_span))
 # plt.show()
@@ -72,14 +72,12 @@ plt.show()
 # fixa shooting method
     
 # def objective(phi0):
-#     xspan = (x[0], x[-1])
 #     sol = solve_ivp(equations, xspan, \
 #             [phi0, 0], t_eval = x)
 #     t = sol.t[0]
 #     return t[-1]
 
 # def root():
-#     xspan = (x[0], x[-1])
 #     v0, = fsolve(objective, phi0)
 #     f0 = [phi0, 0]
 #     sol = solve_ivp(equations, xspan, f0, t_eval = x)
