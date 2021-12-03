@@ -58,9 +58,9 @@ def bisection():
 def objective(v0):
     xspan = (x[0], x[-1])
     sol = solve_ivp(equations, xspan, \
-            [y0, v0], t_eval = x)
+            [y0, v0], t_eval = x)           
     y = sol.y[0]
-    return y[-1]
+    return y[-1] - 0        #last point vs BV = 0                      
 
 def root():
     xspan = (x[0], x[-1])
@@ -70,7 +70,8 @@ def root():
     #     print('First guess: %d, Result: %.1f' \
     #             %(v0_guess, v0))
 
-    v0, = fsolve(objective, 10)
+    v0, = fsolve(objective, 10)                     # find the root of the objective function (diff num sol vs bv) given an initial guess
+    #print(v0) 
     f0 = [y0, v0]
     sol = solve_ivp(equations, xspan, f0, t_eval = x)
     y_num = sol.y[0, :]

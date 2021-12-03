@@ -8,8 +8,10 @@ from scipy.optimize import fsolve
 import matplotlib.pyplot as plt
 plt.style.use('seaborn')
 
+# Feeel, ändra och gör centrerad till mitten möjligen
+
 a = 125**2
-b = 8
+b = 6
 c = 125**2/(2*246**2)
 
 def V(phi):
@@ -40,7 +42,7 @@ plt.show()
 #------
 # Bounce
 #  d2phi/dr2 = -3/r dphi/dr + dV/dphi
-# BV: dphi/dr = 0 at r = 0, phi(r) = phi_F = 0 (false vacua) at r = inf
+# BV: dphi/dr = 0 at r = 0, phi(r) = phi_F = 0 OBS FEL, (false vacua) at r = inf
 # --> IC: dphi/dr = 0 at r = 0, phi(r) = phi0, intital guess that gets updated (need to be close to phi_B, the right solution)
 
 def dVdphi(phi):
@@ -55,10 +57,10 @@ def equations(r, y):
     
     return np.array([dphidr, dvdr])
 
-r = np.linspace(0.0001, 0.1, 100)
+r = np.linspace(0.000001, 0.1, 100)
 xspan = (r[0], r[-1])
 
-f0 = [phi0, 0]          #phi0 - first guess, dphi/dr = 0
+f0 = [phi0-2, 0]          #phi0 - first guess, dphi/dr = 0
 
 # plt.plot(phi_span, dVdphi(phi_span))
 # plt.show()
@@ -83,5 +85,3 @@ plt.show()
 #     sol = solve_ivp(equations, xspan, f0, t_eval = x)
 #     y_num = sol.y[0, :]
 #     return y_num
-
-# f_num_root = root()
