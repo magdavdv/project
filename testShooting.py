@@ -40,7 +40,7 @@ def bisection():
 
         y_num = sol.y[0, :]  #the numerical solution
 
-        if np.abs(y_num[-1]) <= tol:        #check if last point (where we land) is within tolerance
+        if np.abs(y_num[-1]) <= tol:        #check if last point (where we land) is within tolerance, the difference between num value and 0 the true value
             break
         
         #  Adjust our bounds if we are not within tolerance, bisection method
