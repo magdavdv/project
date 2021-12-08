@@ -128,13 +128,13 @@ def shooting(r, trueVacuum):
 
         # Solve the system using our guess
         sol = solve_ivp(equations, xspan, f0, t_eval = r)       # # atol=1e-20, rtol=1e-10, max_step=1e-7
-        #print(sol.message)
 
         y_num = sol.y[0, :]  #the numerical solution
+        print(sol.message)
 
         # Felsök
-        print('low =', low, 'high = ', high)
-        print('count: ', count, 'Value of last point in numerical: ', y_num[-1], 'Initial guess: ', phi0)
+        print('low =', low, ', high = ', high, ', Initial guess: ', phi0)
+        print('count: ', count, ', Value of last point in numerical: ', y_num[-1], ', False vacuum: ', phiFalseVacuum)
 
         if np.abs(y_num[-1] - phiFalseVacuum) <= tol:        #check if last point is within tolerance
             break
@@ -142,9 +142,11 @@ def shooting(r, trueVacuum):
         # Adjust our bounds if we are not within tolerance, bisection method
 
         if y_num[-1] < 0 or y_num[-1] > (phiFalseVacuum + tol):                     #overshoot                 
-            low = phi0                  
+            low = phi0
+            print('Overshoot \n')               
         else:                           
             high = phi0                       #undershoot
+            print('Undershoot \n')
             
         #print(count, y_num[-1], phi0)
 
